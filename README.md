@@ -22,5 +22,4 @@ This command migrates the Grails 1.x guide documentation into the 2.x format, in
 
 ## Release Notes
 
-* 0.1
-** Initial release
+* 0.1.1 - Initial public release
