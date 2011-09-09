@@ -22,9 +22,9 @@
 includeTargets << new File("$newDocPluginDir/scripts/_NewDocs.groovy")
 
 USAGE = """
-	migrate-docs
+	migrate-new-docs
 """
 
 target(default: "Migrates an old-style user guide to the YAML TOC based one.") {
-	depends parseArguments, migrateDocs
+	depends (compile, parseArguments, migrateNewDocs)
 }
