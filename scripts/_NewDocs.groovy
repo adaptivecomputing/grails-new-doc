@@ -33,8 +33,13 @@ import grails.util.GrailsNameUtils
 
 includeTargets << grailsScript("_GrailsPackage")
 
-javadocDir = "${grailsSettings.docsOutputDir}/api"
-groovydocDir = "${grailsSettings.docsOutputDir}/gapi"
+if (grailsSettings.metaClass.hasProperty(grailsSettings, "docsOutputDir")) {
+	javadocDir = "${grailsSettings.docsOutputDir}/api"
+	groovydocDir = "${grailsSettings.docsOutputDir}/gapi"
+} else {
+	javadocDir = "${basedir}/docs/api"
+	groovydocDir = "${basedir}/docs/gapi"
+}
 docEncoding = "UTF-8"
 docSourceLevel = "1.5"
 links = ['http://java.sun.com/j2se/1.5.0/docs/api/']
@@ -86,7 +91,7 @@ h2. Description
 And provide a detailed description
         '''
 
-        event("StatusUpdate", ["Example documentation created in ${basedir}/src/docs. Use 'grails doc' to publish."])
+        event("StatusUpdate", ["Example documentation created in ${basedir}/src/docs. Use 'grails new-doc' to publish."])
     }
     else {
         docsInternal()
@@ -337,7 +342,7 @@ target(createIndex: "Produces an index.html page in the root directory") {
     }
 }
 
-target(migrateDocs: "Migrates an old-style gdoc user guide to the current approach using a YAML TOC file.") {
+target(migrateNewDocs: "Migrates an old-style gdoc user guide to the current approach using a YAML TOC file.") {
     depends createConfig
 
     def guideDir = new File(grailsSettings.baseDir, "src/docs/guide")

@@ -10,8 +10,6 @@ This command runs the documentation generation, including groovydoc and generati
 
 This command migrates the Grails 1.x guide documentation into the 2.x format, including generating a links.yml file for legacy links.
 
-NOTE: This command is untested as of yet!
-
 ## Advantages of Grails 2.x Docs
 
 * Use of a single toc.yml file to control titles of pages/sections and their placement in the guide

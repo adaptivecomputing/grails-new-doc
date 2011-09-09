@@ -38,7 +38,7 @@ class LegacyDocMigrator {
     LegacyDocMigrator(File guideSrcDir, File outDir, aliasMap) {
         this.guideSrcDir = guideSrcDir
         this.outDir = outDir
-        this.aliasMap = aliasMap.collectEntries { key, value -> [value, key] }
+        this.aliasMap = aliasMap.inject([:]) { map, entry -> map << [(entry.key):entry.value]; map }
     }
 
     def migrate() {
