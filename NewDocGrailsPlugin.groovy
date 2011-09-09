@@ -25,7 +25,7 @@ including the src/groovy, src/java and grails-app folders.
 '''
 
     // URL to the plugin's documentation
-    def documentation = "http://grails.org/plugin/new-doc"
+    def documentation = "http://github.com/adaptivecomputing/grails-new-doc"
 
     def doWithWebDescriptor = { xml ->
         // TODO Implement additions to web.xml (optional), this event occurs before 
