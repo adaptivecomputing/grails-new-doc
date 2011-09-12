@@ -137,8 +137,11 @@ class DocPublisher {
         String docResources = "${workDir}/doc-resources"
         ant.mkdir(dir: docResources)
         //unpack(dest: docResources, src: "grails-doc-files.jar")
-		ant.copy(todir: docResources) {
-			fileset(dir:"${baseDir}/src/template")
+		ant.copy(todir: docResources, overwrite: true) {
+			if (new File("${src}/template").exists())
+				fileset(dir:"${src}/template")
+			else
+				fileset(dir:"${baseDir}/src/template")
         }
 		
         def refDocsDir = calculateLanguageDir(target?.absolutePath ?: "./docs")
