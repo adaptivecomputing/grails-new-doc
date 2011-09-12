@@ -1,4 +1,4 @@
-This plugin is a backport of Grails 2.x documentation (toc.yml, gdoc file structure without section numbers, fixed groovydoc duplicates, etc) to Grails 1.x projects.  It provides two scripts.
+This plugin is a backport of Grails 2.x documentation (toc.yml, gdoc file structure without section numbers, fixed groovydoc duplicates, etc) to Grails 1.x projects.  It provides three scripts.
 
 ## Commands
 
@@ -9,6 +9,10 @@ This command runs the documentation generation, including groovydoc and generati
 ### grails migrate-doc
 
 This command migrates the Grails 1.x guide documentation into the 2.x format, including generating a links.yml file for legacy links.
+
+### grails install-doc-templates
+
+This command installs the documentation stylesheets and images to src/docs/template.  These templates can then be modified however is wished and when new-doc is run, these templates will be used.  NOTE: If this directory exists, the files in it will be copied to the output no matter if anything exists or not.
 
 ## Advantages of Grails 2.x Docs
 
