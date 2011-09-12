@@ -26,4 +26,5 @@ This command installs the documentation stylesheets and images to src/docs/templ
 
 ## Release Notes
 
+* 0.1.2 - Fixed issue #3 (Added install-doc-templates command and functionality)
 * 0.1.1 - Initial public release
