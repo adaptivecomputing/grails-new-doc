@@ -111,7 +111,7 @@ target(setupDoc:"Sets up the doc directories") {
 }
 
 target(groovydoc:"Produces groovydoc documentation") {
-    depends(parseArguments, setupDoc)
+    depends(parseArguments, createConfig, setupDoc)
 
     if (docsDisabled()) {
         event("DocSkip", ['groovydoc'])
@@ -123,18 +123,34 @@ target(groovydoc:"Produces groovydoc documentation") {
 	
 	final Project project = new Project()
     final Path sourcePath = new Path(project)
-    File file = new File("./grails-app")
-    file.eachDir{
-      sourcePath.add(new Path(project, it.getAbsolutePath()))
-    }
-    file = new File("./src/groovy")
-    file.eachDir{
-      sourcePath.add(new Path(project, it.getAbsolutePath()))
-    }
-    file = new File("./src/java")
-    file.eachDir{
-      sourcePath.add(new Path(project, it.getAbsolutePath()))
-    }
+	
+	def exclusions = config?.grails?.plugins?.newdoc?.exclusions?.collect { new File(it) } ?: []
+	def inclusions = config?.grails?.plugins?.newdoc?.inclusions?.collect { new File(it) } ?: []
+	
+	File dirFile = new File('grails-app')
+	if (!exclusions.contains(dirFile)) {
+		dirFile.eachDir { File subdir ->
+			if (!exclusions.contains(subdir))
+				sourcePath.add(new Path(project, subdir.absolutePath))
+			else
+				println "Excluding sub directory ${subdir}"
+		}
+	} else {
+		println "Excluding directory ${dirFile}"
+	}
+	
+	['src/groovy', 'src/java'].each { String dir ->
+		dirFile = new File(dir)
+		if (!exclusions.contains(dirFile)) {
+			sourcePath.add(new Path(project, dirFile.absolutePath))
+		} else {
+			println "Excluding directory ${dirFile}"
+		}
+	}
+	inclusions.each { File dir ->
+		println "Including directory ${dir}"
+		sourcePath.add(new Path(project, dir.absolutePath))
+	}
 
     if (isPluginProject) {
         def pluginDescriptor = grailsSettings.baseDir.listFiles().find { it.name.endsWith "GrailsPlugin.groovy" }

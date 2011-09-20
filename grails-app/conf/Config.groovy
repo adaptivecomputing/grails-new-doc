@@ -22,3 +22,6 @@ log4j = {
 
     warn   'org.mortbay.log'
 }
+
+grails.plugins.newdoc.exclusions = ['grails-app', 'src/groovy']
+grails.plugins.newdoc.inclusions = ['src/groovy', 'grails-app/controllers']
