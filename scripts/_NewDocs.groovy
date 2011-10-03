@@ -55,7 +55,7 @@ target(newDocs: "Produces documentation for a Grails project") {
     if (argsMap.init) {
         ant.mkdir(dir:"${basedir}/src/docs/guide")
         ant.mkdir(dir:"${basedir}/src/docs/ref/Items")
-        new File("${basedir}/src/docs/guide/1. Introduction.gdoc").write '''
+        new File("${basedir}/src/docs/guide/introduction.gdoc").write '''
 This is an example documentation template. The syntax format is similar to "Textile":http://textile.thresholdstate.com/.
 
 You can apply formatting such as *bold*, _italic_ and @code@. Bullets are possible too:
@@ -90,6 +90,8 @@ h2. Description
 
 And provide a detailed description
         '''
+		
+		new File("${basedir}/src/docs/guide/toc.yml").write "introduction: Introduction"
 
         event("StatusUpdate", ["Example documentation created in ${basedir}/src/docs. Use 'grails new-doc' to publish."])
     }
