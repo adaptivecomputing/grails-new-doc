@@ -228,8 +228,11 @@ target(javadoc:"Produces javadoc documentation") {
 target(refdocs:"Generates Grails style reference documentation") {
     depends(parseArguments, createConfig,loadPlugins, setupDoc)
 
-    if (docsDisabled()) return
-
+    if (docsDisabled()) {
+        event("DocSkip", ['refdocs'])
+		return
+    }
+		
     def srcDocs = new File("${basedir}/src/docs")
 
     def context = DocumentationContext.getInstance()
@@ -268,6 +271,7 @@ ${m.arguments?.collect { '* @'+GrailsNameUtils.getPropertyName(it)+'@\n' }}
     }
 
     if (srcDocs.exists()) {
+		event("DocStart", ["refdocs"])
         File refDocsDir = grailsSettings.docsOutputDir
         def publisher = loadClass("grails.plugins.newdoc.DocPublisher").newInstance(srcDocs, refDocsDir, newDocPluginDir)
         publisher.ant = ant
@@ -290,6 +294,7 @@ ${m.arguments?.collect { '* @'+GrailsNameUtils.getPropertyName(it)+'@\n' }}
 
             createdManual = true
             event("StatusUpdate", ["Built user manual at ${refDocsDir}/index.html"])
+			event("DocEnd", ["refdocs"])
         }
         catch (RuntimeException ex) {
             if (ex.message) {
