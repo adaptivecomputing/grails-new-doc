@@ -35,6 +35,9 @@ grails.project.dependency.resolution = {
 		compile("org.grails:grails-gdoc-engine:1.0.1") {
 			excludes "jcl-over-slf4j"
 		}
+		compile('commons-lang:commons-lang:2.4')
+		compile('com.lowagie:itext:2.1.0')
+		compile('org.xhtmlrenderer:core-renderer:R8')
     }
 	plugins {
 		build ':release:1.0.0.RC3', {
