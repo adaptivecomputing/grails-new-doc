@@ -71,6 +71,8 @@ class DocPublisher {
     String copyright = ""
     /** The footer to include */
     String footer = ""
+	/** The depth of sections to include in the table of contents */
+	int tocDepth = Integer.MAX_VALUE
     /** HTML markup that renders the left logo */
     String logo
     /** HTML markup that renders the right logo */
@@ -265,6 +267,7 @@ class DocPublisher {
             subtitle: subtitle,
             footer: footer, // TODO - add a way to specify footer
             authors: authors,
+			tocDepth: tocDepth,
             version: version,
             refMenu: refCategories,
             toc: guide,
@@ -352,6 +355,7 @@ class DocPublisher {
 
         template = templateEngine.createTemplate(new File("${docResources}/style/layout.html").newReader(encoding))
         new File("${refGuideDir}/single.html").withWriter(encoding) {out ->
+			println "  >>>>>>>> tocDepth = " + vars.tocDepth
             template.make(vars).writeTo(out)
         }
 

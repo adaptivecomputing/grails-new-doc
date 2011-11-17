@@ -18,3 +18,4 @@ target
 /plugins
 /web-app/plugins
 /web-app/WEB-INF/classes
+/target-eclipse/classes/.BuildConfig.groovy.swp
