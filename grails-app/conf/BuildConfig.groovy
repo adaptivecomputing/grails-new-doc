@@ -46,8 +46,8 @@ grails.project.dependency.resolution = {
     }
 	plugins {
 		build ':release:1.0.0.RC3', {
-			excludes = "json-lib"	// Temporary fix for dependency issues
 			export = false
+			excludes "json-lib"	// Temporary fix for dependency issues
 		}
 	}
 }
