@@ -1,5 +1,11 @@
 This plugin is a backport of Grails 2.x documentation (toc.yml, gdoc file structure without section numbers, fixed groovydoc duplicates, etc) to Grails 1.x projects.  It provides three scripts.
 
+## Grails Doc Extensions
+
+The new-doc command has been improved slightly to set a maximum allowed table of contents depth for what is actually rendered in the ToC, not for what is available for links, etc.
+
+Configure this by using the grails.doc.tocDepth configuration parameter in Config.groovy. This defaults to Integer.MAX_VALUE in order to render all possible elements in the ToC.
+
 ## Groovydoc Extensions
 
 The new-doc command has been improved to include or exclude folders for use in building the groovydoc.  
@@ -64,6 +70,7 @@ This command installs the documentation stylesheets and images to src/docs/templ
 
 ## Release Notes
 
+* 0.3.1 - Added tocDepth configuration parameter
 * 0.3.0 - Added publishing to PDF
 * 0.2.0 - Added including and excluding of groovydoc
 * 0.1.2 - Fixed issue #3 (Added install-doc-templates command and functionality)
