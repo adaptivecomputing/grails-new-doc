@@ -400,7 +400,7 @@ def readPluginMetadataForDocs(publisher) {
 }
 
 def readDocProperties(publisher) {
-    ['copyright', 'license', 'authors', 'footer', 'images', 'tocDepth',
+    ['copyright', 'license', 'authors', 'footer', 'images', 'tocDepth', "title", "subtitle",
      'css', 'style', 'encoding', 'logo', 'sponsorLogo'].each { readIfSet publisher, it }
 }
 
