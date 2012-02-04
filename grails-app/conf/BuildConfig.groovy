@@ -42,7 +42,7 @@ grails.project.dependency.resolution = {
 		// json-lib - temporary fix for dependency issues
 		compile (group:'net.sf.json-lib', name:'json-lib', version:'2.4', classifier:'jdk15') { excludes 'commons-lang' }
 		compile 'net.sf.ezmorph:ezmorph:1.0.6', { excludes "commons-lang" }
-		compile 'xom:xom:1.2.5'
+		compile 'xom:xom:1.2.5', { excludes "xml-apis" }
     }
 	plugins {
 		build ':release:1.0.0.RC3', {
