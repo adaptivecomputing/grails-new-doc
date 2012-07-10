@@ -25,3 +25,5 @@ log4j = {
 
 grails.plugins.newdoc.exclusions = ['grails-app', 'src/groovy']
 grails.plugins.newdoc.inclusions = ['src/groovy', 'grails-app/controllers']
+grails.views.default.codec="none" // none, html, base64
+grails.views.gsp.encoding="UTF-8"

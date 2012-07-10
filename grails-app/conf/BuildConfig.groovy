@@ -21,7 +21,7 @@ grails.project.dependency.resolution = {
 
         // uncomment the below to enable remote dependency resolution
         // from public Maven repositories
-        mavenLocal()
+        //mavenLocal()
         mavenCentral()
         mavenRepo "http://repo.grails.org/grails/libs-releases-local"
         //mavenRepo "http://snapshots.repository.codehaus.org"
@@ -39,16 +39,14 @@ grails.project.dependency.resolution = {
 		compile('commons-lang:commons-lang:2.4')
 		compile('com.lowagie:itext:2.1.0')
 		compile('org.xhtmlrenderer:core-renderer:R8')
-		
-		// json-lib - temporary fix for dependency issues
-		compile (group:'net.sf.json-lib', name:'json-lib', version:'2.4', classifier:'jdk15') { excludes 'commons-lang' }
-		compile 'net.sf.ezmorph:ezmorph:1.0.6', { excludes "commons-lang" }
-		compile 'xom:xom:1.2.5', { excludes "xml-apis" }
     }
 	plugins {
-		build ':release:1.0.0.RC3', {
+		build ":rest-client-builder:1.0.2" {
 			export = false
-			excludes "json-lib"	// Temporary fix for dependency issues
+		}
+		build ':release:2.0.3', {
+			export = false
+			excludes "rest-client-builder"
 		}
 	}
 }
