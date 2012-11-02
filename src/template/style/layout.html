@@ -52,8 +52,19 @@ function addJsClass(el) {
                 <% if (sponsorLogo) { %>
                 <span id="sponsor">${sponsorLogo}</span>
                 <% } %>
-            </div>
-            <p>${subtitle.encodeAsHtml()}</p>
+            </div
+            <%
+                if (single) {
+            %>
+                <p>${subtitle}</p>
+            <%
+                }
+                else {
+            %>
+                <p>${subtitle.encodeAsHtml()}</p>
+            <%
+                }			
+            %>
         </div>
 
 
@@ -77,7 +88,7 @@ function addJsClass(el) {
                             sectionWriter = { lvl, section, topSection, prefix ->
                                 if (single) {
                             %>
-                            <div class="toc-item" style="margin-left:${lvl * 10}px"><a href="#${ section.name.encodeAsUrlFragment().encodeAsHtml() }"><strong>$prefix</strong><span>${section.title?.encodeAsHtml()}</span></a></div>
+                            <div class="toc-item" style="margin-left:${lvl * 10}px"><a href="#${ section.name.encodeAsUrlFragment().encodeAsHtml() }"><strong>$prefix</strong><span>${section.title}</span></a></div>
                             <%
                                 }
                                 else {
