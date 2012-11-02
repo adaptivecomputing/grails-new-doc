@@ -53,6 +53,10 @@ class PdfBuilder {
 
    public static String createXml(File htmlFile, String base) {
 	   String xml = htmlFile.text
+	   
+   	   //file paths are not a URIs in Windows
+	   if (System.properties['os.name'].toLowerCase().contains('windows')){ base = '/' + base.replaceAll('\\\\', '/'); }
+
 
 	   // fix inner anchors
 	   xml = xml.replaceAll('<a href="\\.\\./guide/single\\.html', '<a href="')
