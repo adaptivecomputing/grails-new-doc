@@ -137,6 +137,7 @@ class DocPublisher {
 
         // unpack documentation resources
         String docResources = "${workDir}/doc-resources"
+        ant.delete(dir: docResources)
         ant.mkdir(dir: docResources)
         //unpack(dest: docResources, src: "grails-doc-files.jar")
 		ant.copy(todir: docResources, overwrite: true) {
